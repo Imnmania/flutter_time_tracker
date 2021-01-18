@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:time_tracker/widgets/custom_raised_button.dart';
+import 'package:time_tracker/widgets/custom_raised_button_2.dart';
 
 class SignInPage extends StatelessWidget {
   @override
@@ -39,8 +40,22 @@ class SignInPage extends StatelessWidget {
               height: 30,
             ),
             CustomRaisedBtn(
-              btnName: 'Sign in with Google',
-              textColor: Colors.blueGrey[700],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image.asset('assets/images/google-logo.png'),
+                  Text(
+                    'Sign in with Google',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.blueGrey[700],
+                    ),
+                  ),
+                  Opacity(
+                      opacity: 0.0,
+                      child: Image.asset('assets/images/google-logo.png')),
+                ],
+              ),
               btnColor: Colors.white,
               onPress: () {},
             ),
@@ -48,15 +63,29 @@ class SignInPage extends StatelessWidget {
               height: 10,
             ),
             CustomRaisedBtn(
-              btnName: 'Sign in with Facebook',
-              textColor: Colors.white,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image.asset('assets/images/facebook-logo.png'),
+                  Text(
+                    'Sign in with Facebook',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Opacity(
+                      opacity: 0.0,
+                      child: Image.asset('assets/images/facebook-logo.png')),
+                ],
+              ),
               btnColor: Color(0xFF334D92),
               onPress: () {},
             ),
             SizedBox(
               height: 10,
             ),
-            CustomRaisedBtn(
+            CustomRaisedBtn2(
               btnName: 'Sign in with Email',
               textColor: Colors.white,
               btnColor: Colors.teal[700],
@@ -77,12 +106,13 @@ class SignInPage extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            CustomRaisedBtn(
+            CustomRaisedBtn2(
               btnName: 'Go Anonymous',
               textColor: Colors.black87,
               btnColor: Colors.lime[300],
               onPress: () {},
             ),
+            // Image.asset('assets/images/google-logo.png'),
           ],
         ),
       ),

@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 
-class CustomRaisedBtn extends StatelessWidget {
-  const CustomRaisedBtn({
+class CustomRaisedBtn2 extends StatelessWidget {
+  const CustomRaisedBtn2({
     Key key,
-    // @required this.btnName,
-    // @required this.textColor,
-    @required this.child,
+    @required this.btnName,
+    @required this.textColor,
     @required this.btnColor,
     @required this.onPress,
   }) : super(key: key);
 
-  // final String btnName;
-  // final Color textColor;
-  final Widget child;
+  final String btnName;
+  final Color textColor;
   final Color btnColor;
   final Function onPress;
 
@@ -23,7 +21,13 @@ class CustomRaisedBtn extends StatelessWidget {
       height: 50,
       child: RaisedButton(
         onPressed: onPress,
-        child: child,
+        child: Text(
+          btnName,
+          style: TextStyle(
+            color: textColor,
+            fontSize: 18,
+          ),
+        ),
         color: btnColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
