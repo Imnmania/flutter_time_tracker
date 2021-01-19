@@ -4,7 +4,7 @@ import 'package:time_tracker/widgets/custom_raised_button_2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class SignInPage extends StatelessWidget {
-  void _signInAnonumously() async {
+  Future<void> _signInAnonumously() async {
     final authResult = await FirebaseAuth.instance.signInAnonymously();
     print('${authResult.user.uid}');
     print('${authResult.user.isAnonymous}');
