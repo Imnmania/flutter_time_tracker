@@ -11,8 +11,11 @@ class _LandingPageState extends State<LandingPage> {
   User _user;
 
   void _updateUser(User user) {
-    print('User id: ${user.uid}');
-    print('Is anonymous: ${user.isAnonymous}');
+    // print('User id: ${user.uid}');
+    // print('Is anonymous: ${user.isAnonymous}');
+    setState(() {
+      _user = user;
+    });
   }
 
   @override
