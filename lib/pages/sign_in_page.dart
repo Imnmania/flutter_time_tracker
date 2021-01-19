@@ -1,14 +1,23 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import 'package:time_tracker/widgets/custom_raised_button.dart';
 import 'package:time_tracker/widgets/custom_raised_button_2.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class SignInPage extends StatelessWidget {
+  //
+  final Function(User) onSignIn;
+  const SignInPage({
+    Key key,
+    @required this.onSignIn,
+  }) : super(key: key);
+
   Future<void> _signInAnonumously() async {
     try {
       final authResult = await FirebaseAuth.instance.signInAnonymously();
-      print('${authResult.user.uid}');
-      print('${authResult.user.isAnonymous}');
+      // print('${authResult.user.uid}');
+      // print('${authResult.user.isAnonymous}');
+      onSignIn(authResult.user);
     } catch (e) {
       print(e.toString());
     }
