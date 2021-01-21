@@ -12,7 +12,7 @@ class _LandingPageState extends State<LandingPage> {
   User _user;
 
   void _updateUser(User user) {
-    print('User id: ${user.uid}');
+    // print('User id: ${user.uid}');
     // print('Is anonymous: ${user.isAnonymous}');
     setState(() {
       _user = user;
@@ -27,6 +27,8 @@ class _LandingPageState extends State<LandingPage> {
         onSignIn: _updateUser,
       );
     }
-    return HomePage(); // temporary placeholder for homepage
+    return HomePage(
+      onSignOut: () => _updateUser(null),
+    ); // temporary placeholder for homepage
   }
 }
