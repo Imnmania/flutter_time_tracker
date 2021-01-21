@@ -7,6 +7,18 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home Page'),
         centerTitle: true,
+        actions: [
+          FlatButton(
+            onPressed: () {},
+            child: Text(
+              'Logout',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18.0,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
