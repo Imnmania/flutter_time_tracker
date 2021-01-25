@@ -6,11 +6,9 @@ import 'package:time_tracker/widgets/custom_raised_button_2.dart';
 
 class SignInPage extends StatelessWidget {
   //
-  final Function(FBUser) onSignIn;
   final AuthBase auth;
   const SignInPage({
     Key key,
-    @required this.onSignIn,
     @required this.auth,
   });
 
@@ -26,8 +24,7 @@ class SignInPage extends StatelessWidget {
   // }
   Future<void> _signInAnonumously() async {
     try {
-      final FBUser user = await auth.signInAnonymously();
-      onSignIn(user);
+      await auth.signInAnonymously();
     } catch (e) {
       print(e.toString());
     }
