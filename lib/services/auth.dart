@@ -5,6 +5,7 @@ abstract class AuthBase {
   Future<FBUser> currentUser();
   Future<FBUser> signInAnonymously();
   Future<void> signOut();
+  Stream<FBUser> get onAuthStateChanged;
 }
 
 // This is user class
@@ -44,6 +45,7 @@ class Auth implements AuthBase {
   }
 
   // Stream Codes
+  @override
   Stream<FBUser> get onAuthStateChanged {
     return _firebaseAuth.authStateChanges().map(_userFromFirebase);
   }

@@ -35,6 +35,9 @@ class _LandingPageState extends State<LandingPage> {
     // _updateUser(user);
     //
     _checkCurrentUser();
+    widget.auth.onAuthStateChanged.listen((user) {
+      print('user: ${user?.uid}');
+    });
   }
 
   @override
