@@ -26,6 +26,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home Page'),
         centerTitle: true,
+        elevation: 0.0,
         actions: [
           FlatButton(
             onPressed: () {
