@@ -42,4 +42,9 @@ class Auth implements AuthBase {
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
   }
+
+  // Stream Codes
+  Stream<FBUser> get onAuthStateChanged {
+    return _firebaseAuth.authStateChanges().map(_userFromFirebase);
+  }
 }
