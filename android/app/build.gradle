@@ -44,6 +44,7 @@ android {
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -71,5 +72,8 @@ dependencies {
     
     // Add the dependencies for any other desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries
+    
+    // multidex error solve
+    implementation 'androidx.multidex:multidex: 2.0.1'
 
 }
