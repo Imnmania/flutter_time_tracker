@@ -6,6 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 abstract class AuthBase {
   Future<FBUser> currentUser();
   Future<FBUser> signInAnonymously();
+  Future<FBUser> signInWithGoogle();
   Future<void> signOut();
   Stream<FBUser> get onAuthStateChanged;
 }
@@ -41,6 +42,7 @@ class Auth implements AuthBase {
     return _userFromFirebase(authResult.user);
   }
 
+  @override
   Future<FBUser> signInWithGoogle() async {
     final googleSignIn = GoogleSignIn();
     final googleAccount = await googleSignIn.signIn();
