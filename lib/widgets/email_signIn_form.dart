@@ -38,6 +38,7 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
     }
   }
 
+  // toggle between user types
   void _toggleFormType() {
     setState(() {
       _formType = _formType == EmailSignInFormType.signIn
@@ -48,6 +49,7 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
     _passwordController.clear();
   }
 
+  // children of column widget list
   List<Widget> _buildChildren() {
     final primaryText = _formType == EmailSignInFormType.signIn
         ? 'Sign In'
@@ -56,23 +58,11 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
         ? 'Need an account? Register'
         : 'Already have an account? Sign In';
     return [
-      TextField(
-        controller: _emailController,
-        decoration: InputDecoration(
-          labelText: 'Email',
-          hintText: 'test@test.com',
-        ),
-      ),
+      _buildEmailTextField(),
       SizedBox(
         height: 10,
       ),
-      TextField(
-        controller: _passwordController,
-        decoration: InputDecoration(
-          labelText: 'Password',
-        ),
-        obscureText: true,
-      ),
+      _buildPasswordTextField(),
       SizedBox(
         height: 10,
       ),
@@ -87,6 +77,32 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
     ];
   }
 
+  TextField _buildPasswordTextField() {
+    return TextField(
+      controller: _passwordController,
+      decoration: InputDecoration(
+        labelText: 'Password',
+      ),
+      obscureText: true,
+      autocorrect: false,
+      textInputAction: TextInputAction.done,
+    );
+  }
+
+  TextField _buildEmailTextField() {
+    return TextField(
+      controller: _emailController,
+      decoration: InputDecoration(
+        labelText: 'Email',
+        hintText: 'test@test.com',
+      ),
+      autocorrect: false,
+      keyboardType: TextInputType.emailAddress,
+      textInputAction: TextInputAction.next,
+    );
+  }
+
+  // main build context
   @override
   Widget build(BuildContext context) {
     return Padding(
