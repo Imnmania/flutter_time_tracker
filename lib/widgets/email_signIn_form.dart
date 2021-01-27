@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:time_tracker/services/auth.dart';
+import 'package:time_tracker/services/validators.dart';
 import 'package:time_tracker/widgets/custom_sign_in_btn.dart';
 
 enum EmailSignInFormType { signIn, register }
 
-class EmailSignInForm extends StatefulWidget {
+class EmailSignInForm extends StatefulWidget with EmailAndPasswordValidator {
   //
   final AuthBase auth;
 
-  const EmailSignInForm({@required this.auth});
+  EmailSignInForm({@required this.auth});
 
   @override
   _EmailSignInFormState createState() => _EmailSignInFormState();
@@ -61,7 +62,8 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
         ? 'Need an account? Register'
         : 'Already have an account? Sign In';
 
-    bool submitEnabled = _email.isNotEmpty && _password.isNotEmpty;
+    bool submitEnabled = widget.emailValidator.isValid(_email) &&
+        widget.passwordValidator.isValid(_password);
 
     return [
       _buildEmailTextField(),
