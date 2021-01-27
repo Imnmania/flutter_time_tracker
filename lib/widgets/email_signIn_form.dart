@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:time_tracker/widgets/custom_sign_in_btn.dart';
 
+enum EmailSignInFormType { signIn, register }
+
 class EmailSignInForm extends StatefulWidget {
   @override
   _EmailSignInFormState createState() => _EmailSignInFormState();
@@ -8,8 +10,9 @@ class EmailSignInForm extends StatefulWidget {
 
 class _EmailSignInFormState extends State<EmailSignInForm> {
   final _emailController = TextEditingController();
-
   final _passwordController = TextEditingController();
+
+  EmailSignInFormType _formType = EmailSignInFormType.signIn;
 
   void _submit() {
     print(
@@ -17,7 +20,21 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
     );
   }
 
+  void _toggleFormType() {
+    setState(() {
+      _formType = _formType == EmailSignInFormType.signIn
+          ? EmailSignInFormType.register
+          : EmailSignInFormType.signIn;
+    });
+  }
+
   List<Widget> _buildChildren() {
+    final primaryText = _formType == EmailSignInFormType.signIn
+        ? 'Sign In'
+        : 'Create an account';
+    final secondaryText = _formType == EmailSignInFormType.signIn
+        ? 'Need an account? Register'
+        : 'Already have an account? Sign In';
     return [
       TextField(
         controller: _emailController,
@@ -40,12 +57,12 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
         height: 10,
       ),
       CustomSignInButton(
-        text: 'Sign In',
+        text: primaryText,
         onPressed: _submit,
       ),
       TextButton(
-        onPressed: () {},
-        child: Text('Need an account? Register'),
+        onPressed: _toggleFormType,
+        child: Text(secondaryText),
       ),
     ];
   }
