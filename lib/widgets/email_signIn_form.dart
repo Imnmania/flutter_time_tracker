@@ -15,8 +15,11 @@ class EmailSignInForm extends StatefulWidget {
 }
 
 class _EmailSignInFormState extends State<EmailSignInForm> {
+  //
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final FocusNode _emailFocusNode = FocusNode();
+  final FocusNode _passwordFocusNode = FocusNode();
 
   String get _email => _emailController.text;
   String get _password => _passwordController.text;
@@ -57,6 +60,9 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
     final secondaryText = _formType == EmailSignInFormType.signIn
         ? 'Need an account? Register'
         : 'Already have an account? Sign In';
+
+    bool submitEnabled = _email.isNotEmpty && _password.isNotEmpty;
+
     return [
       _buildEmailTextField(),
       SizedBox(
@@ -68,7 +74,7 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       ),
       CustomSignInButton(
         text: primaryText,
-        onPressed: _submit,
+        onPressed: submitEnabled ? _submit : null,
       ),
       TextButton(
         onPressed: _toggleFormType,
@@ -77,18 +83,7 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
     ];
   }
 
-  TextField _buildPasswordTextField() {
-    return TextField(
-      controller: _passwordController,
-      decoration: InputDecoration(
-        labelText: 'Password',
-      ),
-      obscureText: true,
-      autocorrect: false,
-      textInputAction: TextInputAction.done,
-    );
-  }
-
+  // email text field
   TextField _buildEmailTextField() {
     return TextField(
       controller: _emailController,
@@ -99,7 +94,30 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       autocorrect: false,
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
+      focusNode: _emailFocusNode,
+      onEditingComplete: _emailEditingComplete,
+      onChanged: (email) => _updateState(),
     );
+  }
+
+  // password text field
+  TextField _buildPasswordTextField() {
+    return TextField(
+      controller: _passwordController,
+      decoration: InputDecoration(
+        labelText: 'Password',
+      ),
+      obscureText: true,
+      autocorrect: false,
+      textInputAction: TextInputAction.done,
+      focusNode: _passwordFocusNode,
+      onChanged: (password) => _updateState(),
+    );
+  }
+
+  void _emailEditingComplete() {
+    print('email editing complete');
+    FocusScope.of(context).requestFocus(_passwordFocusNode);
   }
 
   // main build context
@@ -113,5 +131,11 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
         children: _buildChildren(),
       ),
     );
+  }
+
+  void _updateState() {
+    print('Email: $_email');
+    print('Password: $_password');
+    setState(() {});
   }
 }
