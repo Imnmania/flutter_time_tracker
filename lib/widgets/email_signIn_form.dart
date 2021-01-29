@@ -93,7 +93,7 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       decoration: InputDecoration(
         labelText: 'Email',
         hintText: 'test@test.com',
-        errorText: emailValid ? null : "Email can\'t be empty",
+        errorText: emailValid ? null : widget.invalidEmailErrorText,
       ),
       autocorrect: false,
       keyboardType: TextInputType.emailAddress,
@@ -106,10 +106,12 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
 
   // password text field
   TextField _buildPasswordTextField() {
+    final passwordValid = widget.passwordValidator.isValid(_password);
     return TextField(
       controller: _passwordController,
       decoration: InputDecoration(
         labelText: 'Password',
+        errorText: passwordValid ? null : widget.invalidPasswordErrorText,
       ),
       obscureText: true,
       autocorrect: false,
