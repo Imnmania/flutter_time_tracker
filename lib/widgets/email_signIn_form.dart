@@ -87,11 +87,13 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
 
   // email text field
   TextField _buildEmailTextField() {
+    bool emailValid = widget.emailValidator.isValid(_email);
     return TextField(
       controller: _emailController,
       decoration: InputDecoration(
         labelText: 'Email',
         hintText: 'test@test.com',
+        errorText: emailValid ? null : "Email can\'t be empty",
       ),
       autocorrect: false,
       keyboardType: TextInputType.emailAddress,
