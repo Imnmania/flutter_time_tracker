@@ -27,8 +27,13 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
 
   EmailSignInFormType _formType = EmailSignInFormType.signIn;
 
+  bool _submitted = false;
+
   // Sign in with email and password
   void _submit() async {
+    setState(() {
+      _submitted = true;
+    });
     // 'Email: ${_emailController.text}, Password: ${_passwordController.text}');
     try {
       if (_formType == EmailSignInFormType.signIn) {
@@ -87,13 +92,13 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
 
   // email text field
   TextField _buildEmailTextField() {
-    bool emailValid = widget.emailValidator.isValid(_email);
+    bool showErrorText = _submitted && !widget.emailValidator.isValid(_email);
     return TextField(
       controller: _emailController,
       decoration: InputDecoration(
         labelText: 'Email',
         hintText: 'test@test.com',
-        errorText: emailValid ? null : widget.invalidEmailErrorText,
+        errorText: showErrorText ? widget.invalidEmailErrorText : null,
       ),
       autocorrect: false,
       keyboardType: TextInputType.emailAddress,
@@ -106,12 +111,13 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
 
   // password text field
   TextField _buildPasswordTextField() {
-    final passwordValid = widget.passwordValidator.isValid(_password);
+    final showErrorText =
+        _submitted && !widget.passwordValidator.isValid(_password);
     return TextField(
       controller: _passwordController,
       decoration: InputDecoration(
         labelText: 'Password',
-        errorText: passwordValid ? null : widget.invalidPasswordErrorText,
+        errorText: showErrorText ? widget.invalidPasswordErrorText : null,
       ),
       obscureText: true,
       autocorrect: false,
