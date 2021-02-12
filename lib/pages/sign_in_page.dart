@@ -59,8 +59,8 @@ class SignInPage extends StatelessWidget {
       MaterialPageRoute(
         fullscreenDialog: true,
         builder: (context) => EmailSignInPage(
-          auth: auth,
-        ),
+            // auth: auth,
+            ),
       ),
     );
   }
@@ -119,7 +119,7 @@ class SignInPage extends StatelessWidget {
                 ],
               ),
               btnColor: Colors.white,
-              onPress: _signInWithGoogle,
+              onPress: () => _signInWithGoogle(context),
             ),
             SizedBox(
               height: 10,
@@ -142,7 +142,7 @@ class SignInPage extends StatelessWidget {
                 ],
               ),
               btnColor: Color(0xFF334D92),
-              onPress: _signInWithFacebook,
+              onPress: () => _signInWithFacebook(context),
             ),
             SizedBox(
               height: 10,
@@ -172,7 +172,7 @@ class SignInPage extends StatelessWidget {
               btnName: 'Go Anonymous',
               textColor: Colors.black87,
               btnColor: Colors.lime[300],
-              onPress: _signInAnonumously,
+              onPress: () => _signInAnonumously(context),
             ),
             // Image.asset('assets/images/google-logo.png'),
           ],
