@@ -19,15 +19,15 @@ class LandingPage extends StatelessWidget {
           FBUser user = snapshot.data;
           if (user == null) {
             return SignInPage(
-              // onSignIn: (user) => _updateUser(user),
-              // onSignIn: _updateUser,
-              auth: auth,
-            );
+                // onSignIn: (user) => _updateUser(user),
+                // onSignIn: _updateUser,
+                // auth: auth,
+                );
           }
           return HomePage(
-            // onSignOut: () => _updateUser(null),
-            auth: auth,
-          );
+              // onSignOut: () => _updateUser(null),
+              // auth: auth,
+              );
         } else {
           return Scaffold(
             body: Center(

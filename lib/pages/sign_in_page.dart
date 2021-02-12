@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:time_tracker/pages/email_sign_in_page.dart';
-import 'package:time_tracker/services/auth.dart';
+// import 'package:time_tracker/services/auth.dart';
+import 'package:time_tracker/services/auth_provider.dart';
 
 import 'package:time_tracker/widgets/custom_raised_button.dart';
 import 'package:time_tracker/widgets/custom_raised_button_2.dart';
 
 class SignInPage extends StatelessWidget {
   //
-  final AuthBase auth;
-  const SignInPage({
-    Key key,
-    @required this.auth,
-  });
+  // final AuthBase auth;
+  // const SignInPage({
+  //   Key key,
+  //   @required this.auth,
+  // });
 
   // Future<void> _signInAnonumously() async {
   //   try {
@@ -23,24 +24,30 @@ class SignInPage extends StatelessWidget {
   //     print(e.toString());
   //   }
   // }
-  Future<void> _signInAnonumously() async {
+  Future<void> _signInAnonumously(BuildContext context) async {
     try {
+      final auth = AuthProvider.of(context);
+
       await auth.signInAnonymously();
     } catch (e) {
       print(e.toString());
     }
   }
 
-  Future<void> _signInWithGoogle() async {
+  Future<void> _signInWithGoogle(BuildContext context) async {
     try {
+      final auth = AuthProvider.of(context);
+
       await auth.signInWithGoogle();
     } catch (e) {
       print(e.toString());
     }
   }
 
-  Future<void> _signInWithFacebook() async {
+  Future<void> _signInWithFacebook(BuildContext context) async {
     try {
+      final auth = AuthProvider.of(context);
+
       await auth.signInWithFacebook();
     } catch (e) {
       print(e.toString());
