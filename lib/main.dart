@@ -21,8 +21,8 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.indigo,
         ),
         home: LandingPage(
-          auth: Auth(),
-        ),
+            // auth: Auth(),
+            ),
         debugShowCheckedModeBanner: false,
       ),
     );

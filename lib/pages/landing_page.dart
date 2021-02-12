@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:time_tracker/pages/home_page.dart';
 import 'package:time_tracker/pages/sign_in_page.dart';
 import 'package:time_tracker/services/auth.dart';
+import 'package:time_tracker/services/auth_provider.dart';
 
 class LandingPage extends StatelessWidget {
-  final AuthBase auth;
-  LandingPage({@required this.auth});
+  // final AuthBase auth;
+  // LandingPage({@required this.auth});
 
   @override
   Widget build(BuildContext context) {
+    final auth = AuthProvider.of(context);
     return StreamBuilder<FBUser>(
       stream: auth.onAuthStateChanged,
       // initialData: ,
