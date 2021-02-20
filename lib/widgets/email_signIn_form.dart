@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:time_tracker/services/auth.dart';
 // import 'package:time_tracker/services/auth.dart';
-import 'package:time_tracker/services/auth_provider.dart';
+// import 'package:time_tracker/services/auth_provider.dart';
 import 'package:time_tracker/services/validators.dart';
 import 'package:time_tracker/widgets/custom_sign_in_btn.dart';
 import 'package:time_tracker/widgets/platform_alert_dialog.dart';
@@ -41,7 +43,9 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
     });
     // 'Email: ${_emailController.text}, Password: ${_passwordController.text}');
     try {
-      final auth = AuthProvider.of(context);
+      // final auth = AuthProvider.of(context);
+      final auth = Provider.of<AuthBase>(context);
+
       // await Future.delayed(Duration(seconds: 3));
       if (_formType == EmailSignInFormType.signIn) {
         await auth.signInUserWithEmailAndPassword(_email, _password);
